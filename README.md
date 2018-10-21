@@ -1,4 +1,6 @@
 # Kratos
+[![CircleCI](https://circleci.com/gh/rubyrider/kratos.svg?style=svg)](https://circleci.com/gh/rubyrider/kratos) [![Coverage Status](https://coveralls.io/repos/github/rubyrider/kratos/badge.svg)](https://coveralls.io/github/rubyrider/kratos)
+
 Kratos is the God of War. This gem 'Kratos' will build a strong authorisation to defend unauthorised access and provide a friendly API and interface to control access dynamically
 
 ## Usage
