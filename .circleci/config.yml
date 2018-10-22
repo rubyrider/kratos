@@ -28,11 +28,14 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
+                                x
       - run:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run: sudo apt install -y mysql-client || true
+      - run: sudo apt install -y libmysqlclient-dev || true
 
       - save_cache:
           paths:
