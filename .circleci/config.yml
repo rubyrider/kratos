@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.4.0-node-browsers
         environment:
           - RAILS_ENV: test
-      - image: mysql:5.7
+      - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD=true
           - MYSQL_USER=root
