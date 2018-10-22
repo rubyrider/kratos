@@ -10,7 +10,9 @@ jobs:
       - image: circleci/ruby:2.4.2-jessie-node
         environment:
           - RAILS_ENV: test
-      - image: circleci/mysql:5.7
+      - image: mysql:5.7
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true
+
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD=true
           - MYSQL_USER=root
@@ -20,7 +22,10 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - checkout  
+      - checkout
+      - run: sudo apt install -y mysql-client
+      - run: sudo apt install -y libmysqlclient-dev
+      - run: sudo /etc/init.d/mysql restart
 
       # Download and cache dependencies
       - restore_cache:
@@ -29,16 +34,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: mysql -h 127.0.0.1 -u root circle_test
-
       - run:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - run: sudo apt install -y mysql-client || true
-      - run: sudo apt install -y libmysqlclient-dev || true
-      - run: sudo /etc/init.d/mysql restart
 
       - save_cache:
           paths:
