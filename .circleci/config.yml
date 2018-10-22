@@ -14,8 +14,6 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD=true
           - MYSQL_USER=root
-          - MYSQL_PASSWORD=''
-
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
